@@ -1,4 +1,6 @@
- import 'package:flutter_bloc/flutter_bloc.dart';
+ import 'dart:convert';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_weather_app/bloc/states.dart';
 import 'package:simple_weather_app/dio_helper/dio_helper.dart';
 import 'package:simple_weather_app/model/weather_model.dart';
@@ -7,14 +9,8 @@ class WeatherCubit extends Cubit<WeatherStates>{
   WeatherCubit() : super(WeatherInitialState());
 
   static WeatherCubit get(context) => BlocProvider.of(context);
-var index;
 
-void changeIndex(index)
-{
-  index=index;
-  emit(ChangeIndexState());
-}
-List weatherdata=[];
+  WeatherData? weatherData;
   getWeatherData()
   {
     DioHelper.getData(
@@ -25,8 +21,9 @@ List weatherdata=[];
         },
     ).then((value)
     {
-      print(value.data.toString());
-      weatherdata = value.data["query"];
+      print(value.data[0]);
+      
+      weatherData = WeatherData.fromJson(value.data[0]);
       emit(GetWeatherDataSuccessState());
     }
     ).catchError((error)

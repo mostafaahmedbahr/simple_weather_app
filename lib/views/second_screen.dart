@@ -4,7 +4,7 @@ import 'package:simple_weather_app/bloc/cubit.dart';
 import 'package:simple_weather_app/bloc/states.dart';
 class SecondScreen extends StatelessWidget {
   late String title;
-  SecondScreen({required this.title});
+  SecondScreen({Key? key, required this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<WeatherCubit,WeatherStates>(
@@ -15,26 +15,22 @@ class SecondScreen extends StatelessWidget {
           appBar: AppBar(),
           body: Column(
             children: [
-              Image(
-                image: NetworkImage("https://ak.picdn.net/shutterstock/videos/1019313310/thumb/1.jpg",
-                ),
-
-              ),
-              Text("",
+            Image.asset("assets/images/1.webp",),
+              Text(cubit.weatherData!.title.toString(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text("sun",
+              Text(cubit.weatherData!.woeid.toString(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text("19 C",
+              Text(cubit.weatherData!.lattLong!,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 40,

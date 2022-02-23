@@ -19,11 +19,7 @@ class FirstScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Image(
-                  image: NetworkImage("https://ak.picdn.net/shutterstock/videos/1019313310/thumb/1.jpg",
-                  ),
-
-                ),
+                Image.asset("assets/images/1.webp",),
                 Text("Discover the weather in your City",
                   style: TextStyle(
                     color: Colors.white,
@@ -45,7 +41,7 @@ class FirstScreen extends StatelessWidget {
                       Navigator.push(context,
                           MaterialPageRoute(
                             builder: (context)=>SecondScreen(
-                              title:cubit.weatherdata[cubit.index],),));
+                              title:'')));
                     },
                     child: Text("Get Started",
                       style: TextStyle(
